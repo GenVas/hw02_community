@@ -7,15 +7,15 @@
     
 
 {% for post in posts %}
+    
     <h3>
         Автор: {{ post.author.get_full_name }},
         Дата публикации: {{ post.pub_date|date:"d M Y" }}
     </h3>   
+    
     <p>{{ post.text|linebreaksbr }}</p>
         
-    {% if not forloop.last %}
-        <hr style="width:100%; height:10px; border-top: 2px solid rgb(55, 0, 255)" >
-    {% endif %}
+    <hr>
 {% endfor %}
 
 {% endblock %}
