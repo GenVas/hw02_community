@@ -9,12 +9,7 @@ def index(request):
 
 
 def group_posts(request, slug):
-    # функция get_object_or_404 получает по заданным критериям объект из базы
-    # данных или возвращает сообщение об ошибке, если объект не найден
     group = get_object_or_404(Group, slug=slug)
-
-    # Метод .filter позволяет ограничить поиск по критериям. Это аналог
-    # добавления условия WHERE group_id = {group_id}
-    posts = Post.objects.filter(group=group)[:12]
-    # posts = Post.group.group_posts[:12]
+    posts = group.posts.all()[:12]
+    # posts = Post.objects.filter(group=group)[:12] - как "-" альтернатива
     return render(request, "group.html", {"group": group, "posts": posts})
